@@ -14,48 +14,18 @@
 </div> <!--  end row -->
 <div class="row">
     <div class="col-md-8">
-        <div class="post">
-            <h3>Post Title</h3>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-        </div>
-        <hr>
-        <div class="post">
-            <h3>Post Title</h3>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-        </div>
-        <hr>
-        <div class="post">
-            <h3>Post Title</h3>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-        </div>
-        <hr>
-        <div class="post">
-            <h3>Post Title</h3>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-        </div>
-        <hr>
-        <div class="post">
-            <h3>Post Title</h3>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-        </div>
-    </div>
+        @foreach($post as $post)
+            <div class="post">
+                <h3>{{ $post->title }}</h3>
+                <p>{{ substr($post->body, 0, 50) }}{{ strlen($post->body)>300 ? " ..." : " " }}</p>
+                <a href="#" class="btn btn-primary">Read more</a>
+            </div>
+            <hr>
+        @endforeach
     <div class="col-md-3 col-md-offset-1">
         <h2>Side bar</h2>
         This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
         <hr>
-        <h2>Side bar</h2>
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
-        <hr>
-        <h2>Side bar</h2>
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
-        <hr>
-        <h2>Side bar</h2>
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
     </div>
 
 </div>   
