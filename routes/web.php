@@ -15,7 +15,7 @@
 // Route::middleware('auth')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Auth::routes();
+// Auth::routes();
 
 Route::group(['middleware' => ['web']], function() {
 	// Authentication Routes
@@ -26,7 +26,8 @@ Route::group(['middleware' => ['web']], function() {
 	// Registration Route
 	// Route::get('auth/register', 'Auth\AuthController@getRegister');
 	// Route::post('auth/register', 'Auth\AuthController@postRegister');
-
+	
+	Auth::routes();
 
 	Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
 		->where('slug', '[\w\d\-\_]+');
@@ -36,9 +37,3 @@ Route::group(['middleware' => ['web']], function() {
 	Route::get('/', 'PagesController@getIndex');
 	Route::resource('posts', 'PostController');
 });
-
-
-	
-
-
-
