@@ -49,12 +49,19 @@ My account <span class="caret"></span>
 <a class="dropdown-item" href="#">
 {{ Auth::user()->name }}
 </a>
+<a class="dropdown-item" href="{{ route('posts.index') }}">
+Posts
+</a>
+<a class="dropdown-item" href="{{ route('categories.index') }}">
+Categories
+</a>
 <a class="dropdown-item" href="#">
 Profile
 </a>
 <a class="dropdown-item" href="#">
 settings
 </a>
+<hr>
 <a class="dropdown-item" href="{{ route('logout') }}"
 onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">

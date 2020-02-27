@@ -18,22 +18,20 @@
 // Auth::routes();
 
 Route::group(['middleware' => ['web']], function() {
-	// Authentication Routes
-	// Route::get('auth/login', 'Auth\AuthController@getLogin');
-	// Route::post('auth/login', 'Auth\AuthController@postLogin');
-	// Route::get('auth/logout', 'Auth\AuthController@getLogout');
-	// Route::auth();
-	// Registration Route
-	// Route::get('auth/register', 'Auth\AuthController@getRegister');
-	// Route::post('auth/register', 'Auth\AuthController@postRegister');
-	
 	Auth::routes();
-
-	Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
-		->where('slug', '[\w\d\-\_]+');
+	// Route::auth();
+	// Categories
+	Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+	
+	Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
 	Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
+	// Route::get('blog/', 'BlogController@getSingle');
 	Route::get('/contact', 'PagesController@getContact');
 	Route::get('/about', 'PagesController@getAbout');
 	Route::get('/', 'PagesController@getIndex');
 	Route::resource('posts', 'PostController');
 });
+
+// Route::get('/', function(){
+	// Route::resource('posts', 'PostController');
+// })->middleware('auth');

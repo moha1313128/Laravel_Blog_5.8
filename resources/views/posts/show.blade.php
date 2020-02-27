@@ -11,6 +11,14 @@
 	<div class="col-md-4">
 		<div class="well">
 			<dl class="dl-horizontal">
+				<label>Url:</label>
+				<p><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></p>
+			</dl>
+			<dl class="dl-horizontal">
+				<dt>Category:</dt>
+				<dd>{{ $post->category->name }}</dd>
+			</dl>
+			<dl class="dl-horizontal">
 				<dt>Author:</dt>
 				<dd>WebDevMa</dd>
 			</dl>
@@ -37,8 +45,11 @@
 					{!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
 					{!! Form::close() !!}
 				</div>
-				<div class="col-sm-12">
-					<a href="{{ route('posts.index', $post->id) }}" class="btn btn-default btn-block"><< See all posts</a>
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- <a href="{{ route('posts.index', $post->id) }}" class="btn btn-default btn-block"><< See all posts</a> -->
+						{{ Html::linkRoute('posts.index', '<< See All Posts', array(), ['class' => 'btn btn-default btn-block btn-h1-spacing']) }}
+					</div>
 				</div>
 			</div>
 		</div>
