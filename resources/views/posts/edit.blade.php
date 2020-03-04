@@ -1,7 +1,10 @@
 @extends('main')
 
 @section('title', '| Edit Blog Post')
-
+@section('stylesheets')
+	{!! Html::style('css/parsley.css') !!}
+	{!! Html::style('css/select2.min.css') !!}
+@endsection
 @section('content')
 
 	<div class="row">
@@ -15,6 +18,9 @@
 			
 			{{ Form::label('category_id', "Category:") }}
 			{{ Form::select('category_id', $categories, null, ['class'=>'form-control']) }}
+
+			{{ Form::label('tags', "Tags:", ['class'=>'form-spacing-top']) }}
+			{{ Form::select('tag[]', $tags, null, ['class'=>'select2-multi form-control', 'multiple'=>'multple']) }}
 
 			{{ Form::label('body', "Body:", ['class' => 'form-spacing-top']) }}
 			{{ Form::textarea('body', null, ['class' => 'form-control']) }}
@@ -40,10 +46,18 @@
 						{{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) }}
 					</div>
 				</div>
-
+				
 			</div>
 		</div>
 		{!! Form::close() !!}
 	</div>	<!-- end of .row (form) -->
 
 @stop
+
+@section('scripts')
+	{!! Html::script('js/select2.min.js') !!}
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+		$('.select2-multi').select2().val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+	</script>
+@endsection
