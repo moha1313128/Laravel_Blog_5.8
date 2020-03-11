@@ -34,9 +34,9 @@
 			</select>
 
 			{{ Form::label('body', 'Post Body:') }}
-			{{ Form::textarea('body', null, array('class' => 'form-control', 'required'=>'')) }}
+			{{ Form::textarea('body', null, array('class' => 'form-control', 'required'=>'', 'rows' => '3')) }}
 
-			{{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px')) }}
+			{{ Form::submit('Create Post', array('class' => 'btn btn-success btn-block', 'style' => 'margin-top: 20px')) }}
 		{!! Form::close() !!}
 	</div>
 </div>
