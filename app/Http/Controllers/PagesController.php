@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Mail;
+use Session;
 
 class PagesController extends Controller
 {  
@@ -29,5 +31,28 @@ class PagesController extends Controller
     public function getContact()
     {
         return view('pages.contact');
+    }
+
+    // Sending Email
+    public function postContact(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'subject' => 'min:3',
+            'message' => 'min:10'
+          ]);
+        $data = array(
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'bodyMessage' => $request->message
+        );
+        Mail::send('emails.contact', $data, function($message) use ($data) {
+            $message->from($data['email']);
+            $message->to('moha1313128@gmail.com');
+            $message->subject($data['subject']);
+        });
+
+        Session::flash('success', 'Your message was sent successfully');
+        return redirect('/');
     }
 }
